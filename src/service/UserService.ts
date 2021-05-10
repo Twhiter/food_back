@@ -1,6 +1,7 @@
 import  * as UserDao from "../dao/UserDao"
 import {User} from "../model/Table";
 import {UserRegist} from "../model/UserRegist";
+import * as AddressDao from "../dao/AddressDao"
 
 
 export const LoginByPhone = async function (phone:string,pwd:string):Promise<[boolean, User | undefined]> {
@@ -45,6 +46,10 @@ export async function getById(user_id:number) {
 
     return user.length === 0?null:user[0];
 
+}
+
+export async function getUserAddress(user_id:number) {
+    return AddressDao.getByUser_id(user_id);
 }
 
 

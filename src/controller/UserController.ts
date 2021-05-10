@@ -84,6 +84,21 @@ export const GetBaseInfo:Middleware = async ctx => {
 
     ctx.body = JSON.stringify(response);
 
+}
 
+export const GetUserAddress:Middleware = async ctx => {
+
+    let response:Response = {msg:"",data:undefined,status:0};
+
+    try {
+
+        const user_id = Number(ctx.params['user_id']);
+        response.data = await UserService.getUserAddress(user_id);
+    }catch (e) {
+        response.msg = "error";
+        response.status = -1;
+    }
+
+    ctx.body = JSON.stringify(response);
 
 }

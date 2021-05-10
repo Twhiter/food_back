@@ -18,5 +18,6 @@ router.all("/api/checkPhone/:phone",CheckCon.checkUserPhone);
 router.post("/api/user",UserCon.Register);
 router.post("/api/user/login",UserCon.Login);
 router.get("/api/user/:user_id",UserCon.GetBaseInfo)
+router.get("/api/userAddress/:user_id",UserCon.GetUserAddress)
 
 export default router;
