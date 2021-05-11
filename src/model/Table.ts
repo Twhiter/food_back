@@ -50,17 +50,27 @@ export interface Ingredient {
     name:string
 }
 
+
+export interface OrderContaining {
+    FoodSale_id:number
+    order_id:number
+    number:number
+}
+
 export interface Order {
 
     order_id:number
 
     address_id:number
 
-    create_time:Date
-    delivery_time:Date
-    finish_time:Date
-    cancel_time:Date
+    create_time:string
+    delivery_time:string
+    finish_time:string
+    cancel_time:string
 
     total:number
 
 }
+
+
+export type SimpleOrder = Order & User & Address;
