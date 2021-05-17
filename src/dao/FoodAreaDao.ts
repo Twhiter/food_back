@@ -20,7 +20,9 @@ export async function getAll(con?:PoolConnection) {
 
     for (let category of categories) {
 
-        const items = await FoodOnSaleDao.getAllByCategory(category,con);
+        let items = await FoodOnSaleDao.getAllByCategory(category,con);
+
+
         foodAreaList.push({category:category,items:items});
     }
 

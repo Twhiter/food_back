@@ -1,5 +1,6 @@
 import {PoolConnection} from "mariadb";
 import {pool} from "../config/DaoConfig";
+import {Ingredient} from "../model/Table";
 
 export async function getNameByFoodBase_id(foodBase_id: number,conn?:PoolConnection) {
 
@@ -16,4 +17,15 @@ export async function getNameByFoodBase_id(foodBase_id: number,conn?:PoolConnect
         conn.release();
 
     return ingredients;
+}
+
+export async function getAll() {
+
+    const conn = await pool.getConnection();
+
+    const ingredients:Ingredient[] = await conn.query("select name from Ingredient");
+
+    conn.release()
+
+    return ingredients.map(value => value.name);
 }

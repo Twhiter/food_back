@@ -14,4 +14,12 @@ export function getByUserId(user_id: number) {
     return OrderDao.getByUserId(user_id);
 }
 
+export function  getById(order_id:number) {
+    return OrderDao.getById(order_id);
+}
+
+export function getAll() {
+    return OrderDao.getAll();
+}
+
 

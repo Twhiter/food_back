@@ -57,3 +57,39 @@ export const GetByUser_id:Middleware = async ctx => {
 
     ctx.body = JSON.stringify(response)
 }
+
+export const GetById:Middleware = async ctx => {
+
+    let response:Response = {msg:"",data:undefined,status:0};
+
+    try {
+        response.data = await OrderService.getById(Number(ctx.params['order_id']));
+
+    }catch (e) {
+        console.log(e)
+        response.msg = "error,server error";
+        response.status = -1;
+    }
+
+    ctx.body = JSON.stringify(response)
+}
+
+
+export const GetAll:Middleware = async ctx => {
+
+    let response:Response = {msg:"",data:undefined,status:0};
+
+    try {
+        response.data = await OrderService.getAll();
+
+    }catch (e) {
+        console.log(e)
+        response.msg = "error,server error";
+        response.status = -1;
+    }
+
+    ctx.body = JSON.stringify(response)
+
+
+
+}

@@ -33,7 +33,8 @@ export async function Detail(order_id:number) {
     const conn = await pool.getConnection()
 
     const detail:OrderDetail[] = await conn
-        .query("select * from FoodSale natural join OrderContaining where order_id=" + order_id);
+        .query("select FoodBase_id,size,style,price,order_id,number,`image`,name from " +
+            "FoodSale natural join OrderContaining natural join FoodBase where order_id=" + order_id);
 
     conn.release()
     return detail;
@@ -49,4 +50,24 @@ export async function getByUserId(user_id:number) {
     conn.release()
 
     return simpleOrder.map(value => ({...value,}));
+}
+
+export async function getById(order_id: number) {
+    const conn = await pool.getConnection()
+
+    const order:Order = (await conn.query("select * from `Order` where order_id=" + order_id))[0];
+
+    conn.release()
+
+    return order;
+}
+
+export async function getAll() {
+    const conn = await pool.getConnection()
+
+    const order:SimpleOrder[] = await conn.query("select * from `SimpleOrder`");
+
+    conn.release()
+
+    return order.map(value => ({...value,password:undefined}));
 }
